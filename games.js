@@ -33,7 +33,7 @@ const GAMES = [
     name: "Gloomhaven",
     price: 50,
     rrp: 140,
-    condition: "4th printing, very good",
+    condition: "4th printing",
     players: "1–4",
     time: "60–120 min",
     link: "https://boardgamegeek.com/boardgame/174430/gloomhaven",
@@ -84,7 +84,7 @@ const GAMES = [
     rrp: 35,
     players: "2",
     time: "30–60 min",
-    link: "https://boardgamegeek.com/boardgame/274590/watergate",
+    link: "https://boardgamegeek.com/boardgame/274364/watergate",
     photos: ["images/watergate-1.jpg", "images/watergate-2.jpg"],
   },
   {
