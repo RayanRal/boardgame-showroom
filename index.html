@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Board Games for Sale</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f1e7;
+      --card: #fffdf8;
+      --ink: #2b2620;
+      --muted: #7a6f61;
+      --line: #e6dccb;
+      --accent: #b4532a;
+      --chip: #efe6d6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 16px/1.5 Inter, system-ui, sans-serif;
+    }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+
+    header { padding: 56px 0 32px; }
+    h1 {
+      font-family: Fraunces, Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      line-height: 1.1;
+      margin: 0 0 12px;
+    }
+    .intro { max-width: 60ch; color: var(--muted); margin: 0 0 16px; }
+    .contact {
+      display: inline-block;
+      background: var(--ink);
+      color: var(--bg);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-weight: 500;
+      font-size: .95rem;
+    }
+    .contact a { color: inherit; text-decoration: none; }
+    footer a { color: var(--ink); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+      padding-bottom: 48px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .card.sold { opacity: .6; }
+
+    .photo {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      background: var(--chip);
+    }
+    .photo:has(img) { background: #fff; }
+    .photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block; }
+    .placeholder {
+      width: 100%; height: 100%;
+      display: grid; place-items: center;
+      font-family: Fraunces, Georgia, serif;
+      font-size: 3.5rem; color: var(--muted);
+    }
+    .badge {
+      position: absolute; top: 12px; left: 12px;
+      background: var(--accent); color: #fff;
+      font-size: .75rem; font-weight: 600; letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: 4px 10px; border-radius: 999px;
+    }
+    .thumbs { display: flex; gap: 6px; padding: 8px 12px 0; flex-wrap: wrap; }
+    .thumbs button {
+      padding: 0; border: 2px solid transparent; border-radius: 6px;
+      width: 48px; height: 48px; overflow: hidden; cursor: pointer; background: none;
+    }
+    .thumbs button[aria-current="true"] { border-color: var(--accent); }
+    .thumbs img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+    h2 { font-family: Fraunces, Georgia, serif; font-size: 1.3rem; margin: 0; line-height: 1.2; }
+    .prices { display: flex; flex-direction: column; align-items: flex-end; }
+    .price { font-weight: 600; font-size: 1.2rem; color: var(--accent); white-space: nowrap; }
+    .price.ask { font-size: .85rem; font-weight: 500; }
+    .rrp { font-size: .8rem; color: var(--muted); text-decoration: line-through; white-space: nowrap; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip { background: var(--chip); border-radius: 6px; padding: 2px 8px; font-size: .82rem; color: var(--muted); }
+    .desc { margin: 0; font-size: .95rem; }
+    .link {
+      margin-top: auto; align-self: flex-start;
+      color: var(--ink); font-weight: 500; font-size: .9rem;
+      text-decoration: none; border-bottom: 1px solid var(--line);
+    }
+    .link:hover { border-color: var(--accent); color: var(--accent); }
+
+    footer { border-top: 1px solid var(--line); padding: 24px 0 40px; color: var(--muted); font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1 id="title"></h1>
+      <p class="intro" id="intro"></p>
+      <span class="contact" id="contact"></span>
+    </header>
+    <main class="grid" id="grid"></main>
+  </div>
+  <footer><div class="wrap" id="footer"></div></footer>
+
+  <script src="games.js"></script>
+  <script>
+    const $ = (id) => document.getElementById(id);
+    document.title = SHOP.title;
+    $("title").textContent = SHOP.title;
+    $("intro").textContent = SHOP.intro;
+    if (SHOP.whatsapp) {
+      const waUrl = "https://wa.me/" + SHOP.whatsapp.replace(/\D/g, "");
+      const label = `WhatsApp ${SHOP.whatsapp}`;
+      for (const id of ["contact", "footer"]) {
+        const a = document.createElement("a");
+        a.href = waUrl; a.target = "_blank"; a.rel = "noopener";
+        a.textContent = id === "contact" ? `💬 ${label}` : `Interested? Message me on ${label}`;
+        $(id).append(a);
+      }
+    } else {
+      $("contact").remove();
+      document.querySelector("footer").remove();
+    }
+
+    const el = (tag, cls, text) => {
+      const n = document.createElement(tag);
+      if (cls) n.className = cls;
+      if (text != null) n.textContent = text;
+      return n;
+    };
+
+    for (const g of GAMES) {
+      const card = el("article", "card" + (g.sold ? " sold" : ""));
+      const photos = g.photos || [];
+
+      const photo = el("div", "photo");
+      if (photos.length) {
+        const img = el("img");
+        img.src = photos[0];
+        img.alt = g.name;
+        img.loading = "lazy";
+        photo.append(img);
+      } else {
+        photo.append(el("div", "placeholder", g.name.charAt(0)));
+      }
+      if (g.sold) photo.append(el("span", "badge", "Sold"));
+      card.append(photo);
+
+      if (photos.length > 1) {
+        const thumbs = el("div", "thumbs");
+        photos.forEach((src, i) => {
+          const b = el("button");
+          b.setAttribute("aria-label", `Photo ${i + 1}`);
+          b.setAttribute("aria-current", i === 0);
+          const t = el("img"); t.src = src; t.alt = ""; t.loading = "lazy";
+          b.append(t);
+          b.onclick = () => {
+            photo.querySelector("img").src = src;
+            thumbs.querySelectorAll("button").forEach((x) => x.setAttribute("aria-current", x === b));
+          };
+          thumbs.append(b);
+        });
+        card.append(thumbs);
+      }
+
+      const body = el("div", "body");
+      const top = el("div", "top");
+      top.append(el("h2", null, g.name));
+      const money = (n) => SHOP.currency + (Number.isInteger(n) ? n : n.toFixed(2));
+      const priceBox = el("div", "prices");
+      priceBox.append(g.price != null
+        ? el("span", "price", money(g.price))
+        : el("span", "price ask", "Price on request"));
+      if (g.rrp != null) priceBox.append(el("span", "rrp", `RRP ${money(g.rrp)}`));
+      top.append(priceBox);
+      body.append(top);
+
+      const chips = el("div", "chips");
+      if (g.players) chips.append(el("span", "chip", `👥 ${g.players}`));
+      if (g.time) chips.append(el("span", "chip", `⏱ ${g.time}`));
+      if (g.condition) chips.append(el("span", "chip", g.condition));
+      if (chips.children.length) body.append(chips);
+
+      if (g.description) body.append(el("p", "desc", g.description));
+      if (g.link) {
+        const a = el("a", "link", "More about this game →");
+        a.href = g.link; a.target = "_blank"; a.rel = "noopener";
+        body.append(a);
+      }
+      card.append(body);
+      $("grid").append(card);
+    }
+  </script>
+</body>
+</html>
