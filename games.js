@@ -8,7 +8,7 @@ const SHOP = {
   title: "Board Games for Sale",
   intro:
     "A small collection of well-loved games looking for a new table. " +
-    "Everything is complete unless noted. Message me if something catches your eye.",
+    "Message me if something catches your eye.",
   // Your phone number in international format, e.g. "+44 7700 900123".
   // It shows on the page and opens a WhatsApp chat when tapped.
   whatsapp: "",
