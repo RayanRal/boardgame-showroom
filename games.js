@@ -53,7 +53,7 @@ const GAMES = [
   },
   {
     name: "Zombicide: Black Plague",
-    price: 55,
+    price: 50,
     rrp: 110,
     players: "1–6",
     time: "60–180 min",
@@ -62,7 +62,7 @@ const GAMES = [
   },
   {
     name: "Undaunted: Normandy",
-    price: 17.5,
+    price: 20,
     rrp: 35,
     players: "2",
     time: "45–60 min",
@@ -71,7 +71,7 @@ const GAMES = [
   },
   {
     name: "Scythe",
-    price: 40,
+    price: 50,
     rrp: 80,
     players: "1–5",
     time: "90–115 min",
@@ -80,7 +80,7 @@ const GAMES = [
   },
   {
     name: "Watergate",
-    price: 17.5,
+    price: 20,
     rrp: 35,
     players: "2",
     time: "30–60 min",
@@ -98,7 +98,7 @@ const GAMES = [
   },
   {
     name: "Pandemic",
-    price: 17.5,
+    price: 15,
     rrp: 35,
     players: "2–4",
     time: "45 min",
