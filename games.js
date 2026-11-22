@@ -105,4 +105,13 @@ const GAMES = [
     link: "https://boardgamegeek.com/boardgame/30549/pandemic",
     photos: ["images/pandemic-1.jpg", "images/pandemic-2.jpg"],
   },
+  {
+    name: "Android: Netrunner",
+    price: 20,
+    rrp: 37,
+    players: "2",
+    time: "45 min",
+    link: "https://boardgamegeek.com/boardgame/124742/android-netrunner",
+    photos: ["images/netrunner-1.jpg"],
+  },
 ];
