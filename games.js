@@ -49,7 +49,7 @@ const GAMES = [
     time: "60–180 min",
     link: "https://boardgamegeek.com/boardgame/159504/folklore-the-affliction",
     description: "",
-    photos: ["images/folklore-1.jpg"],
+    photos: ["images/folklore-1.jpg", "images/folklore-2.jpg"],
   },
   {
     name: "Zombicide: Black Plague",
