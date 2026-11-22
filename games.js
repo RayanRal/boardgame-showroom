@@ -27,7 +27,7 @@ const GAMES = [
     time: "90–180 min",
     link: "https://boardgamegeek.com/boardgame/280794/etherfields",
     description: "",
-    photos: ["images/etherfields-1.jpg"],
+    photos: ["images/etherfields-1.jpg", "images/etherfields-2.jpg"],
   },
   {
     name: "Gloomhaven",
@@ -38,7 +38,7 @@ const GAMES = [
     time: "60–120 min",
     link: "https://boardgamegeek.com/boardgame/174430/gloomhaven",
     description: "",
-    photos: ["images/gloomhaven-1.jpg"],
+    photos: ["images/gloomhaven-1.jpg", "images/gloomhaven-2.jpg"],
   },
   {
     name: "Folklore: The Affliction",
@@ -112,6 +112,6 @@ const GAMES = [
     players: "2",
     time: "45 min",
     link: "https://boardgamegeek.com/boardgame/124742/android-netrunner",
-    photos: ["images/netrunner-1.jpg"],
+    photos: ["images/netrunner-1.jpg", "images/netrunner-2.jpg"],
   },
 ];
